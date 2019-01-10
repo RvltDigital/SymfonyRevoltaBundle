@@ -1,0 +1,10 @@
+services:
+
+  _defaults:
+    public: true
+    autowire: true
+    autoconfigure: true
+
+  RvltDigital\SymfonyRevoltaBundle\Listeners\DoctrineMetaDataListener:
+    tags:
+      - { name: doctrine.event_subscriber }
