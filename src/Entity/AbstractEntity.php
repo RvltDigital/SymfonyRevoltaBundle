@@ -4,6 +4,7 @@ namespace RvltDigital\SymfonyRevoltaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use RvltDigital\StaticDiBundle\StaticDI;
+use RvltDigital\SymfonyRevoltaBundle\Annotation\InvisibleApiProperty;
 use RvltDigital\SymfonyRevoltaBundle\Traits\DataSetterTrait;
 use RvltDigital\SymfonyRevoltaBundle\Validator\Error\Error;
 use RvltDigital\SymfonyRevoltaBundle\Validator\Error\ErrorStack;
@@ -16,6 +17,7 @@ abstract class AbstractEntity
 
     /**
      * @var ErrorStack
+     * @InvisibleApiProperty()
      */
     protected $errors;
 
