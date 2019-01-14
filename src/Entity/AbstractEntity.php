@@ -2,6 +2,7 @@
 
 namespace RvltDigital\SymfonyRevoltaBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use RvltDigital\StaticDiBundle\StaticDI;
 use RvltDigital\SymfonyRevoltaBundle\Traits\DataSetterTrait;
 use RvltDigital\SymfonyRevoltaBundle\Validator\Error\Error;
@@ -46,7 +47,7 @@ abstract class AbstractEntity
     }
 
     /**
-     * @ORM\PreFlush
+     * @ORM\PreFlush()
      */
     public function preFlushValidation()
     {
