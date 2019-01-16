@@ -9,14 +9,14 @@ trait EntityMetaData
     /**
      * @var \DateTime $created
      *
-     * @ORM\Column(type="datetime", nullable = false)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $created;
 
     /**
      * @var \DateTime $updated
      *
-     * @ORM\Column(type="datetime", nullable = false)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updated;
 
