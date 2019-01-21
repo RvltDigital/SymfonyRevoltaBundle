@@ -20,7 +20,11 @@ class EnumChoiceValidator extends ConstraintValidator
         /** @var AbstractEnum $class */
         $class = $constraint->enum;
         if (!$class::hasValue($value)) {
-            $this->context->buildViolation($constraint->message)->addViolation();
+            $this
+                ->context
+                ->buildViolation($constraint->message)
+                ->setParameter('{{ value }}', $this->formatValue($value))
+                ->addViolation();
         }
     }
 }
