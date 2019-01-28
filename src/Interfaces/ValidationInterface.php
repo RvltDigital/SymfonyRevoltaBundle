@@ -2,7 +2,7 @@
 
 namespace RvltDigital\SymfonyRevoltaBundle\Interfaces;
 
-use RvltDigital\SymfonyRevoltaBundle\Validation\Validator\Error\ErrorStack;
+use RvltDigital\SymfonyRevoltaBundle\Validator\Error\ErrorStack;
 
 interface ValidationInterface
 {
