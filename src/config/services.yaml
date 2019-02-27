@@ -5,6 +5,10 @@ services:
     autowire: true
     autoconfigure: true
 
+  RvltDigital\SymfonyRevoltaBundle\:
+    resource: '../src/*'
+    exclude: '../src/{Entity,Interfaces,Traits}'
+
   Redis:
     class: 'Redis'
     factory: 'RvltDigital\SymfonyRevoltaBundle\Service\RedisHandlerFactory:getInstance'
