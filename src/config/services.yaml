@@ -4,3 +4,7 @@ services:
     public: true
     autowire: true
     autoconfigure: true
+
+  Redis:
+    class: 'Redis'
+    factory: 'RvltDigital\SymfonyRevoltaBundle\Service\RedisHandlerFactory:getInstance'

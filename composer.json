@@ -9,7 +9,8 @@
     "symfony/orm-pack": "^1.0",
     "rvlt-digital/symfony-static-di-bundle": "^3.0",
     "symfony/validator": "^4.1",
-    "tuscanicz/enum": "^2.0"
+    "tuscanicz/enum": "^2.0",
+    "ext-redis": "*"
   },
   "autoload": {
     "psr-4": {
