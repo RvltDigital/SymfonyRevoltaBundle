@@ -6,8 +6,8 @@ services:
     autoconfigure: true
 
   RvltDigital\SymfonyRevoltaBundle\:
-    resource: '../src/*'
-    exclude: '../src/{Entity,Interfaces,Traits}'
+    resource: '../*'
+    exclude: '../{config,Entity,Interfaces,Traits}'
 
   Redis:
     class: 'Redis'
