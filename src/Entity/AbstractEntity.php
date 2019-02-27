@@ -4,6 +4,7 @@ namespace RvltDigital\SymfonyRevoltaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use RvltDigital\StaticDiBundle\StaticDI;
+use RvltDigital\SymfonyRevoltaBundle\Interfaces\ValidationInterface;
 use RvltDigital\SymfonyRevoltaBundle\Traits\DataSetterTrait;
 use RvltDigital\SymfonyRevoltaBundle\Validator\Error\Error;
 use RvltDigital\SymfonyRevoltaBundle\Validator\Error\ErrorStack;
@@ -14,7 +15,7 @@ use Symfony\Component\Validator\Validation;
  * @ORM\MappedSuperclass()
  * @ORM\HasLifecycleCallbacks()
  */
-abstract class AbstractEntity
+abstract class AbstractEntity implements ValidationInterface
 {
     use DataSetterTrait;
 
