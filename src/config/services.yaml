@@ -7,7 +7,7 @@ services:
 
   RvltDigital\SymfonyRevoltaBundle\:
     resource: '../*'
-    exclude: '../{config,Entity,Interfaces,Traits,Validator}'
+    exclude: '../{config,Entity,Interfaces,Traits,Validator,Exception}'
 
   Redis:
     class: 'Redis'
