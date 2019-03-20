@@ -12,3 +12,7 @@ services:
   Redis:
     class: 'Redis'
     factory: 'RvltDigital\SymfonyRevoltaBundle\Service\RedisHandlerFactory:getInstance'
+
+  RvltDigital\SymfonyRevoltaBundle\Listener\FixDefaultSchemaListener:
+    tags:
+      - { name: doctrine.event_subscriber, connection: default }
