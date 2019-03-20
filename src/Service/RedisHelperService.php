@@ -287,23 +287,23 @@ class RedisHelperService
 
         $allNumeric = true;
         $previousKey = null;
-        foreach ($value as $key => $arrayValue) {
+        foreach ($value as $arrayKey => $arrayValue) {
             if (!$allNumeric) {
                 break;
             }
-            if (!is_int($key)) {
+            if (!is_int($arrayKey)) {
                 $allNumeric = false;
             }
-            if (is_null($previousKey) && $key !== 0) {
+            if (is_null($previousKey) && $arrayKey !== 0) {
                 $allNumeric = false;
             }
             if (!is_null($previousKey)) {
-                if ($key !== $previousKey + 1) {
+                if ($arrayKey !== $previousKey + 1) {
                     $allNumeric = false;
                 }
             }
 
-            $previousKey = $key;
+            $previousKey = $arrayKey;
         }
 
         if ($allNumeric) {
