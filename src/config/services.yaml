@@ -16,3 +16,6 @@ services:
   RvltDigital\SymfonyRevoltaBundle\Listener\FixDefaultSchemaListener:
     tags:
       - { name: doctrine.event_subscriber, connection: default }
+
+  doctrine.orm.validator.unique:
+    class: RvltDigital\SymfonyRevoltaBundle\Validator\Constraints\UniqueEntityValidator
