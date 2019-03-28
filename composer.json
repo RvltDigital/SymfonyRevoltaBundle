@@ -10,7 +10,9 @@
     "rvlt-digital/symfony-static-di-bundle": "^3.0",
     "symfony/validator": "^4.1",
     "tuscanicz/enum": "^2.0",
-    "ext-redis": "*"
+    "ext-redis": "*",
+    "symfony/monolog-bundle": "^3.0",
+    "rikudou/installer": "^1.0"
   },
   "autoload": {
     "psr-4": {

@@ -19,3 +19,6 @@ services:
 
   doctrine.orm.validator.unique:
     class: RvltDigital\SymfonyRevoltaBundle\Validator\Constraints\UniqueEntityValidator
+
+  logger:
+    alias: 'monolog.logger'
