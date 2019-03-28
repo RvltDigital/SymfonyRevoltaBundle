@@ -1,0 +1,12 @@
+monolog:
+  handlers:
+    slack:
+      type: slack
+      token: '%env(SLACK_API_KEY)%'
+      level: warning
+      channel: '#errors'
+      bot_name: 'Error Logger'
+      icon_emoji: ':poop:'
+      include_extra: true
+      use_attachment: true
+      include_stacktraces: true
