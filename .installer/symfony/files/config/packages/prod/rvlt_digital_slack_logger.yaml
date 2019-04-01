@@ -10,3 +10,5 @@ monolog:
       include_extra: true
       use_attachment: true
       include_stacktraces: true
+      excluded_404s:
+        - ^/favicon\..*
