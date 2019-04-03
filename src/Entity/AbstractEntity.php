@@ -29,7 +29,10 @@ abstract class AbstractEntity implements ValidationInterface
         $this->setErrors();
     }
 
-    abstract public function getId(): ?int;
+    /**
+     * @return string|int
+     */
+    abstract public function getId();
 
     public function validate(): bool
     {
