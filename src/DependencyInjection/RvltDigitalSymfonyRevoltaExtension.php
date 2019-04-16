@@ -13,7 +13,8 @@ class RvltDigitalSymfonyRevoltaExtension extends Extension
     /**
      * Loads a specific configuration.
      *
-     * @throws \InvalidArgumentException When provided tag is not defined in this extension
+     * @param array $configs
+     * @param ContainerBuilder $container
      * @throws \Exception
      */
     public function load(array $configs, ContainerBuilder $container)
@@ -21,5 +22,8 @@ class RvltDigitalSymfonyRevoltaExtension extends Extension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../config'));
 
         $loader->load('services.yaml');
+
+        $configs = $this->processConfiguration(new Configuration(), $configs);
+        $container->setParameter('rvlt_digital_revolta.change_tracking_policy', $configs['change_tracking_policy'] ?? null);
     }
 }

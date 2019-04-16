@@ -17,6 +17,10 @@ services:
     tags:
       - { name: doctrine.event_subscriber, connection: default }
 
+  RvltDigital\SymfonyRevoltaBundle\Listener\ChangeTrackingPolicyListener:
+    tags:
+      - { name: docrine.event_subscriber, connection: default }
+
   doctrine.orm.validator.unique:
     class: RvltDigital\SymfonyRevoltaBundle\Validator\Constraints\UniqueEntityValidator
 
