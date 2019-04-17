@@ -25,6 +25,11 @@ class ChangeTrackingPolicyListener implements EventSubscriber
 
     public function loadClassMetadata(LoadClassMetadataEventArgs $args)
     {
+        try {
+            StaticDI::getInstance();
+        } catch (\LogicException $e) {
+            return;
+        }
         $configValue = StaticDI::getParameter('rvlt_digital_revolta.change_tracking_policy');
         if (is_null($configValue)) {
             return;
