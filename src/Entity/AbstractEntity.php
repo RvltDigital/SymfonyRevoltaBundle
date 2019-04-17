@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Validation;
 /**
  * @ORM\MappedSuperclass()
  * @ORM\HasLifecycleCallbacks()
+ * @ORM\ChangeTrackingPolicy("DEFERRED_EXPLICIT")
  */
 abstract class AbstractEntity implements ValidationInterface
 {
