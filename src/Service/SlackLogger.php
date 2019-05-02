@@ -21,7 +21,7 @@ class SlackLogger extends SlackHandler
         parent::__construct(
             $this->config['token'] ?? '',
             $this->config['channel'] ?? '#errors',
-            null,
+            $this->config['bot_name'] ?? 'Errors Service',
             $this->config['use_attachment'] ?? true,
             $this->config['icon_emoji'] ?? ':poop:',
             $this->convertNameToLevel($this->config['level'] ?? '') ?? Logger::WARNING,
