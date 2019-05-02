@@ -4,7 +4,6 @@ namespace RvltDigital\SymfonyRevoltaBundle\Service;
 
 use Monolog\Handler\SlackHandler;
 use Monolog\Logger;
-use RvltDigital\StaticDiBundle\StaticDI;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SlackLogger extends SlackHandler
@@ -15,9 +14,9 @@ class SlackLogger extends SlackHandler
      */
     private $config = [];
 
-    public function __construct()
+    public function __construct(?array $config)
     {
-        $this->config = StaticDI::getParameter('rvlt_digital.internal.revolta.slack_config') ?? [];
+        $this->config = $config ?? [];
         parent::__construct(
             $this->config['token'] ?? '',
             $this->config['channel'] ?? '#errors',

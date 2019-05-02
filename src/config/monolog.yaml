@@ -2,4 +2,4 @@ monolog:
   handlers:
     rvlt_slack:
       type: service
-      id: rvlt_digital.logger.slack
+      id: RvltDigital\SymfonyRevoltaBundle\Service\SlackLogger
