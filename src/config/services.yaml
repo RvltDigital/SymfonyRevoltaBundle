@@ -21,6 +21,9 @@ services:
     tags:
       - { name: doctrine.event_subscriber, connection: default }
 
+  rvlt_digital.logger.slack:
+    class: RvltDigital\SymfonyRevoltaBundle\Service\SlackLogger
+
   doctrine.orm.validator.unique:
     class: RvltDigital\SymfonyRevoltaBundle\Validator\Constraints\UniqueEntityValidator
 

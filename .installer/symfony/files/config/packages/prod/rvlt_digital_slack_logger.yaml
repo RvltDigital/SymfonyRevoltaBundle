@@ -1,14 +1,14 @@
-monolog:
-  handlers:
-    slack:
-      type: slack
-      token: '%env(SLACK_API_KEY)%'
-      level: warning
-      channel: '#errors'
-      bot_name: 'Error Logger'
-      icon_emoji: ':poop:'
-      include_extra: true
-      use_attachment: true
-      include_stacktraces: true
-      excluded_404s:
-        - ^/favicon\..*
+rvlt_digital_symfony_revolta:
+  slack_logging:
+    enabled: true
+    token: '%env(SLACK_API_KEY)%'
+    level: warning
+    channel: '#errors'
+    bot_name: 'Error Logger'
+    icon_emoji: ':poop:'
+    include_extra: true
+    use_attachment: true
+    include_stacktraces: true
+    excluded_404:
+      - ^/favicon\..*
+    exclude_all_404: false
