@@ -24,8 +24,8 @@ class SlackLogger extends SlackHandler
             $this->config['use_attachment'] ?? true,
             $this->config['icon_emoji'] ?? ':poop:',
             $this->convertNameToLevel($this->config['level'] ?? '') ?? Logger::WARNING,
-            true,
-            false,
+            $this->config['bubble'] ?? true,
+            $this->config['use_short_attachment'] ?? false,
             $this->config['include_extra'] ?? true,
             []
         );
