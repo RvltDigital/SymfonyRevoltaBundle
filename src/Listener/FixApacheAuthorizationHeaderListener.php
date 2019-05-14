@@ -11,7 +11,7 @@ class FixApacheAuthorizationHeaderListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::REQUEST => 'addAuthorizationHeader',
+            KernelEvents::REQUEST => ['addAuthorizationHeader', 9],
         ];
     }
 
