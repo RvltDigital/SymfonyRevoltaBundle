@@ -8,7 +8,7 @@ use RvltDigital\SymfonyRevoltaBundle\Interfaces\ValidationInterface;
 use RvltDigital\SymfonyRevoltaBundle\Traits\DataSetterTrait;
 use RvltDigital\SymfonyRevoltaBundle\Validator\Error\Error;
 use RvltDigital\SymfonyRevoltaBundle\Validator\Error\ErrorStack;
-use Symfony\Component\Validator\Exception\ValidatorException;
+use RvltDigital\SymfonyRevoltaBundle\Validator\ValidatorUtils;
 use Symfony\Component\Validator\Validation;
 
 /**
@@ -59,9 +59,7 @@ abstract class AbstractEntity implements ValidationInterface
      */
     public function preFlushValidation()
     {
-        if (!$this->errors->empty() || !$this->validate()) {
-            throw new ValidatorException();
-        }
+        ValidatorUtils::check($this);
     }
 
     /**

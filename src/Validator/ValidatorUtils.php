@@ -9,11 +9,25 @@ class ValidatorUtils
 {
     public static function check(...$arguments)
     {
-        if (in_array(false, array_map(function ($item) {
-            /** @var ValidationInterface $item */
-            return $item->validate();
-        }, self::getValidable($arguments)), true)) {
-            throw new ValidatorException();
+        $exception = null;
+        foreach (self::getValidable($arguments) as $item) {
+            if (!$item->validate()) {
+                foreach ($item->getErrors() as $error) {
+                    $exception = new ValidatorException(
+                        sprintf(
+                            '[%s] %s: %s',
+                            $error->getClass(),
+                            $error->getName(),
+                            $error->getMessage()
+                        ),
+                        0,
+                        $exception
+                    );
+                }
+            }
+        }
+        if ($exception !== null) {
+            throw $exception;
         }
     }
 
