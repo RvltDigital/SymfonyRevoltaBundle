@@ -12,7 +12,7 @@
     "tuscanicz/enum": "^2.0",
     "ext-redis": "*",
     "symfony/monolog-bundle": "^3.0",
-    "rikudou/installer": "^2.0"
+    "rikudou/installer": "^2.1.1"
   },
   "autoload": {
     "psr-4": {
