@@ -1,5 +1,6 @@
 /.idea
 /vendor
 /composer.lock
+/rikudou.installer.lock
 /.php_cs.cache
 /.php_cs
