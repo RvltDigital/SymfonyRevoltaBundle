@@ -12,7 +12,8 @@
     "tuscanicz/enum": "^2.0",
     "ext-redis": "*",
     "symfony/monolog-bundle": "^3.0",
-    "rikudou/installer": "^2.1.1"
+    "rikudou/installer": "^2.1.1",
+    "symfony/swiftmailer-bundle": "^3.2"
   },
   "autoload": {
     "psr-4": {
