@@ -27,6 +27,7 @@ class RvltDigitalSymfonyRevoltaExtension extends Extension implements PrependExt
         $configs = $this->processConfiguration(new Configuration(), $configs);
 
         $container->setParameter('rvlt_digital_revolta.change_tracking_policy', $configs['change_tracking_policy'] ?? null);
+        $container->setParameter('rvlt_digital_revolta.mailer', $configs['mailer'] ?? []);
         $container->setParameter('rvlt_digital.internal.revolta.slack_config', $configs['slack_logging'] ?? []);
     }
 
