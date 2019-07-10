@@ -33,7 +33,7 @@ class MailService
         $mailer = StaticDI::get('mailer');
 
         if (!$fromEmail) {
-            $fromEmail = StaticDI::getParameter('rvlt_digital_revolta.mailer')['defaul_email'] ?? null;
+            $fromEmail = StaticDI::getParameter('rvlt_digital_revolta.mailer')['default_email'] ?? null;
         }
         if (!$fromName) {
             $fromName = StaticDI::getParameter('rvlt_digital_revolta.mailer')['default_name'] ?? null;
@@ -50,7 +50,7 @@ class MailService
             ->setBody($body, $contentType);
 
         if (!$mailer->send($message)) {
-             throw new Exception(sprintf(
+            throw new Exception(sprintf(
                  'Send mail failure: Subject: %s, From: %s <%s>, To: %s, Body: %s',
                  $subject,
                  $fromName,
