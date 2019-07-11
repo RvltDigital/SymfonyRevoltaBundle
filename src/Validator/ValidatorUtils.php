@@ -4,7 +4,8 @@ namespace RvltDigital\SymfonyRevoltaBundle\Validator;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Exception;
-use ReflectionProperty;
+use ReflectionClass;
+use ReflectionException;
 use RvltDigital\StaticDiBundle\StaticDI;
 use RvltDigital\SymfonyRevoltaBundle\Interfaces\ValidationInterface;
 use SplObjectStorage;
@@ -62,8 +63,14 @@ class ValidatorUtils
                 if (!is_subclass_of($class, ValidationInterface::class)) {
                     continue;
                 }
-                $reflection = new ReflectionProperty(get_class($item), $name);
-                $reflection->setAccessible(true);
+                try {
+                    $classReflection = new ReflectionClass($class);
+                    $reflection = $classReflection->getProperty($name);
+                    $reflection->setAccessible(true);
+                } catch (ReflectionException $e) {
+                    // this happens when the class is a proxy
+                    continue;
+                }
 
                 $value = $reflection->getValue($item);
                 if ($result->contains($value)) {

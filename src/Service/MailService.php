@@ -51,12 +51,12 @@ class MailService
 
         if (!$mailer->send($message)) {
             throw new Exception(sprintf(
-                 'Send mail failure: Subject: %s, From: %s <%s>, To: %s, Body: %s',
-                 $subject,
-                 $fromName,
-                 $fromEmail,
-                 $to,
-                 $body
+                'Send mail failure: Subject: %s, From: %s <%s>, To: %s, Body: %s',
+                $subject,
+                $fromName,
+                $fromEmail,
+                $to,
+                $body
              ));
         }
     }
