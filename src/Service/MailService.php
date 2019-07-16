@@ -18,8 +18,9 @@ class MailService
      * @param null|string $fromEmail
      * @param null|string $fromName
      * @param null|string $contentType
-     *
-     * @throws \Exception
+     * @param string|null $replyTo
+     * @param string|null $replyToName
+     * @throws Exception
      */
     public function send(
         string $subject,
@@ -27,7 +28,9 @@ class MailService
         string $body,
         ?string $fromEmail = null,
         ?string $fromName = null,
-        ?string $contentType = 'text/html'
+        ?string $contentType = 'text/html',
+        ?string $replyTo = null,
+        ?string $replyToName = null
     ) {
         /** @var \Swift_Mailer $mailer */
         $mailer = StaticDI::get('mailer');
@@ -37,6 +40,12 @@ class MailService
         }
         if (!$fromName) {
             $fromName = StaticDI::getParameter('rvlt_digital_revolta.mailer')['default_name'] ?? null;
+        }
+        if ($replyTo === null) {
+            $replyTo = StaticDI::getParameter('rvlt_digital_revolta.mailer')['default_reply_to_email'] ?? null;
+        }
+        if ($replyToName === null) {
+            $replyToName = StaticDI::getParameter('rvlt_digital_revolta.mailer')['default_reply_to_name'] ?? null;
         }
         if ($fromEmail === null || $fromName === null) {
             throw new Exception('There is missing default email or default name parameter!');
@@ -48,6 +57,10 @@ class MailService
             ->setFrom($fromEmail, $fromName)
             ->setTo($toArray)
             ->setBody($body, $contentType);
+
+        if ($replyTo !== null) {
+            $message->setReplyTo($replyTo, $replyToName);
+        }
 
         if (!$mailer->send($message)) {
             throw new Exception(sprintf(
