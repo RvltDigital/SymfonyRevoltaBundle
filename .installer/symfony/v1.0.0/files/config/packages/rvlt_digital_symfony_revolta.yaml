@@ -6,3 +6,5 @@ rvlt_digital_symfony_revolta:
   mailer:
     default_name: ''
     default_email: ''
+    default_reply_to_email: ~ # The default Reply-To address, leave null to ignore
+    default_reply_to_name: ~ # The default Reply-To name, leave null to ignore
