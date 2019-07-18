@@ -35,17 +35,19 @@ class MailService
         /** @var \Swift_Mailer $mailer */
         $mailer = StaticDI::get('mailer');
 
+        $mailerConfig = StaticDI::getParameter('rvlt_digital_revolta.mailer');
+
         if (!$fromEmail) {
-            $fromEmail = StaticDI::getParameter('rvlt_digital_revolta.mailer')['default_email'] ?? null;
+            $fromEmail = $mailerConfig['default_email'] ?? null;
         }
         if (!$fromName) {
-            $fromName = StaticDI::getParameter('rvlt_digital_revolta.mailer')['default_name'] ?? null;
+            $fromName = $mailerConfig['default_name'] ?? null;
         }
         if ($replyTo === null) {
-            $replyTo = StaticDI::getParameter('rvlt_digital_revolta.mailer')['default_reply_to_email'] ?? null;
+            $replyTo = $mailerConfig['default_reply_to_email'] ?? null;
         }
         if ($replyToName === null) {
-            $replyToName = StaticDI::getParameter('rvlt_digital_revolta.mailer')['default_reply_to_name'] ?? null;
+            $replyToName = $mailerConfig['default_reply_to_name'] ?? null;
         }
         if ($fromEmail === null || $fromName === null) {
             throw new Exception('There is missing default email or default name parameter!');

@@ -4,7 +4,7 @@ rvlt_digital_symfony_revolta:
   # See https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/change-tracking-policies.html
   change_tracking_policy: ~
   mailer:
-    default_name: ''
-    default_email: ''
+    default_name: ~
+    default_email: ~
     default_reply_to_email: ~ # The default Reply-To address, leave null to ignore
     default_reply_to_name: ~ # The default Reply-To name, leave null to ignore
