@@ -29,7 +29,7 @@ final class Configuration implements ConfigurationInterface
                     ->values(['implicit', 'explicit', 'notify', null])
                 ->end()
                 ->arrayNode('mailer')
-                    ->isRequired()
+                    ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('default_name')
                             ->info('Default sender name')
