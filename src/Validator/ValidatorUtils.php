@@ -37,6 +37,10 @@ class ValidatorUtils
         }
     }
 
+    /**
+     * @param mixed ...$arguments
+     * @return array|ValidationInterface[]
+     */
     public static function getValidableRecursively(...$arguments)
     {
         if (!count($arguments)) {
@@ -94,7 +98,7 @@ class ValidatorUtils
     }
 
     /**
-     * @param ValidationInterface|ValidationInterface[] ...$arguments
+     * @param mixed ...$arguments
      * @return ValidationInterface[]
      */
     public static function getValidable(...$arguments): array
