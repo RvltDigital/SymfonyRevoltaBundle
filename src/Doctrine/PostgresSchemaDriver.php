@@ -10,27 +10,18 @@ class PostgresSchemaDriver extends Driver
     public function connect(array $params, $username = null, $password = null, array $driverOptions = [])
     {
         $connection = parent::connect($params, $username, $password, $driverOptions);
-        $schemas = implode(',', $this->getSchemas());
-        $connection->exec("SET SEARCH_PATH TO {$schemas}");
+        $connection->exec("SET SEARCH_PATH TO {$this->getSchema()}");
 
         return $connection;
     }
 
-    /**
-     * @return string[]
-     */
-    private function getSchemas(): array
+    private function getSchema(): string
     {
-        $schemas = StaticDI::getParameter('rvlt_digital.internal.revolta.postgres_schemas');
-        if (!is_array($schemas)) {
-            $schemas = [];
+        $schema = StaticDI::getParameter('rvlt_digital.internal.revolta.postgres_schema');
+        if (!$schema) {
+            $schema = 'public';
         }
 
-        if (in_array('public', $schemas)) { // remove public to ensure it's last
-            unset($schemas[array_search('public', $schemas)]);
-        }
-        $schemas[] = 'public';
-
-        return $schemas;
+        return $schema;
     }
 }

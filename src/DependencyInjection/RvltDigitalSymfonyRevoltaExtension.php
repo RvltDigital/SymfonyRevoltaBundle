@@ -29,7 +29,7 @@ class RvltDigitalSymfonyRevoltaExtension extends Extension implements PrependExt
         $container->setParameter('rvlt_digital_revolta.change_tracking_policy', $configs['change_tracking_policy'] ?? null);
         $container->setParameter('rvlt_digital_revolta.mailer', $configs['mailer'] ?? []);
         $container->setParameter('rvlt_digital.internal.revolta.slack_config', $configs['slack_logging'] ?? []);
-        $container->setParameter('rvlt_digital.internal.revolta.postgres_schemas', $configs['postgres_schemas'] ?? []);
+        $container->setParameter('rvlt_digital.internal.revolta.postgres_schema', $configs['postgres_schema'] ?? []);
     }
 
     /**
