@@ -3,6 +3,7 @@ rvlt_digital_symfony_revolta:
   # Allowed values: implicit, explicit, notify
   # See https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/change-tracking-policies.html
   change_tracking_policy: ~
+  postgres_schema: public
   mailer:
     default_name: ~
     default_email: ~
