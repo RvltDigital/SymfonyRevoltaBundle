@@ -10,14 +10,9 @@ use Symfony\Component\Inflector\Inflector;
 class NamingStrategy implements NamingStrategyInterface
 {
     /**
-     * @var UnderscoreNamingStrategy
+     * @var UnderscoreNamingStrategy|null
      */
-    private $original;
-
-    public function __construct()
-    {
-        $this->original = StaticDI::get('doctrine.orm.naming_strategy.underscore');
-    }
+    private $original = null;
 
     /**
      * Returns a table name for an entity class.
@@ -28,7 +23,7 @@ class NamingStrategy implements NamingStrategyInterface
      */
     public function classToTableName($className)
     {
-        $original = $this->original->classToTableName($className);
+        $original = $this->getOriginal()->classToTableName($className);
         $pluralized = Inflector::pluralize($original);
         if (is_array($pluralized)) {
             $pluralized = $pluralized[0];
@@ -48,7 +43,7 @@ class NamingStrategy implements NamingStrategyInterface
      */
     public function propertyToColumnName($propertyName, $className = null)
     {
-        return $this->original->propertyToColumnName($propertyName, $className);
+        return $this->getOriginal()->propertyToColumnName($propertyName, $className);
     }
 
     /**
@@ -63,7 +58,7 @@ class NamingStrategy implements NamingStrategyInterface
      */
     public function embeddedFieldToColumnName($propertyName, $embeddedColumnName, $className = null, $embeddedClassName = null)
     {
-        return $this->original->embeddedFieldToColumnName($propertyName, $embeddedColumnName, $className, $embeddedClassName);
+        return $this->getOriginal()->embeddedFieldToColumnName($propertyName, $embeddedColumnName, $className, $embeddedClassName);
     }
 
     /**
@@ -73,7 +68,7 @@ class NamingStrategy implements NamingStrategyInterface
      */
     public function referenceColumnName()
     {
-        return $this->original->referenceColumnName();
+        return $this->getOriginal()->referenceColumnName();
     }
 
     /**
@@ -85,7 +80,7 @@ class NamingStrategy implements NamingStrategyInterface
      */
     public function joinColumnName($propertyName)
     {
-        return $this->original->joinColumnName($propertyName);
+        return $this->getOriginal()->joinColumnName($propertyName);
     }
 
     /**
@@ -116,6 +111,14 @@ class NamingStrategy implements NamingStrategyInterface
      */
     public function joinKeyColumnName($entityName, $referencedColumnName = null)
     {
-        return $this->original->joinKeyColumnName($entityName, $referencedColumnName);
+        return $this->getOriginal()->joinKeyColumnName($entityName, $referencedColumnName);
+    }
+
+    private function getOriginal(): UnderscoreNamingStrategy
+    {
+        if ($this->original === null) {
+            $this->original = StaticDI::get('doctrine.orm.naming_strategy.underscore');
+        }
+        return $this->original;
     }
 }
