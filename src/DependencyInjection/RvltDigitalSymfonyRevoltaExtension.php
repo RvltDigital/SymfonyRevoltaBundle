@@ -2,6 +2,8 @@
 
 namespace RvltDigital\SymfonyRevoltaBundle\DependencyInjection;
 
+use Exception;
+use LogicException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
@@ -17,7 +19,7 @@ class RvltDigitalSymfonyRevoltaExtension extends Extension implements PrependExt
      *
      * @param array $configs
      * @param ContainerBuilder $container
-     * @throws \Exception
+     * @throws Exception
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -42,6 +44,7 @@ class RvltDigitalSymfonyRevoltaExtension extends Extension implements PrependExt
         $configs = $this->processConfiguration(new Configuration(), $configs);
 
         $this->prependMonolog($configs, $container);
+        $this->prependStaticDi($configs, $container);
     }
 
     private function prependMonolog(array $configs, ContainerBuilder $container)
@@ -52,9 +55,20 @@ class RvltDigitalSymfonyRevoltaExtension extends Extension implements PrependExt
 
         $monologConfig = Yaml::parse(file_get_contents(__DIR__ . '/../config/monolog.yaml'));
         if (!isset($monologConfig['monolog'])) {
-            throw new \LogicException("The monolog config file must have a top-level 'monolog' key");
+            throw new LogicException("The monolog config file must have a top-level 'monolog' key");
         }
 
         $container->prependExtensionConfig('monolog', $monologConfig['monolog']);
+    }
+
+    private function prependStaticDi(array $configs, ContainerBuilder $container)
+    {
+        $staticDiConfig = [
+            'public_services' => [
+                'doctrine.orm.naming_strategy.underscore',
+            ],
+        ];
+
+        $container->prependExtensionConfig('rvlt_digital_static_di', $staticDiConfig);
     }
 }
