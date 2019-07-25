@@ -77,7 +77,7 @@ class ValidatorUtils
                 }
 
                 $value = $reflection->getValue($item);
-                if ($result->contains($value)) {
+                if (!is_object($value) || $result->contains($value)) {
                     continue;
                 }
                 if (
