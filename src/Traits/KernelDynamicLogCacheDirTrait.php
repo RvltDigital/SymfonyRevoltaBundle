@@ -15,18 +15,18 @@ trait KernelDynamicLogCacheDirTrait
         if (!property_exists($this, 'environment')) {
             throw new LogicException('This trait must be used on kernel');
         }
-        if (!getenv('CACHE_DIR')) {
+        if (!isset($_ENV['CACHE_DIR'])) {
             throw new LogicException('The CACHE_DIR env variable must be defined');
         }
-        return $this->replaceProjectDir(getenv('CACHE_DIR') . '/' . $this->environment);
+        return $this->replaceProjectDir($_ENV['CACHE_DIR'] . '/' . $this->environment);
     }
 
     public function getLogDir()
     {
-        if (!getenv('LOG_DIR')) {
+        if (!isset($_ENV['LOG_DIR'])) {
             throw new LogicException('The LOG_DIR env variable must be defined');
         }
-        return $this->replaceProjectDir(strval(getenv('LOG_DIR')));
+        return $this->replaceProjectDir(strval($_ENV['LOG_DIR']));
     }
 
     private function replaceProjectDir(string $directory): string
