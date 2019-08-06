@@ -3,7 +3,6 @@
 namespace RvltDigital\SymfonyRevoltaBundle\Traits;
 
 use LogicException;
-use function getenv;
 use function property_exists;
 use function str_replace;
 use function strval;
@@ -31,6 +30,6 @@ trait KernelDynamicLogCacheDirTrait
 
     private function replaceProjectDir(string $directory): string
     {
-        return str_replace('%kernel.project_dir%', __DIR__.'/..', $directory);
+        return str_replace('%kernel.project_dir%', __DIR__.'/../../../..', $directory);
     }
 }
