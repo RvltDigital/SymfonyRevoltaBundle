@@ -30,6 +30,6 @@ trait KernelDynamicLogCacheDirTrait
 
     private function replaceProjectDir(string $directory): string
     {
-        return str_replace('%kernel.project_dir%', __DIR__.'/../../../..', $directory);
+        return str_replace('%kernel.project_dir%', __DIR__.'/../../../../..', $directory);
     }
 }
