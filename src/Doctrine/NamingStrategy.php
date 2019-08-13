@@ -4,15 +4,19 @@ namespace RvltDigital\SymfonyRevoltaBundle\Doctrine;
 
 use Doctrine\ORM\Mapping\NamingStrategy as NamingStrategyInterface;
 use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
-use RvltDigital\StaticDiBundle\StaticDI;
 use Symfony\Component\Inflector\Inflector;
 
 class NamingStrategy implements NamingStrategyInterface
 {
     /**
-     * @var UnderscoreNamingStrategy|null
+     * @var UnderscoreNamingStrategy
      */
-    private $original = null;
+    private $original;
+
+    public function __construct(UnderscoreNamingStrategy $original)
+    {
+        $this->original = $original;
+    }
 
     /**
      * Returns a table name for an entity class.
@@ -23,7 +27,7 @@ class NamingStrategy implements NamingStrategyInterface
      */
     public function classToTableName($className)
     {
-        $original = $this->getOriginal()->classToTableName($className);
+        $original = $this->original->classToTableName($className);
         $pluralized = Inflector::pluralize($original);
         if (is_array($pluralized)) {
             $pluralized = $pluralized[0];
@@ -43,7 +47,7 @@ class NamingStrategy implements NamingStrategyInterface
      */
     public function propertyToColumnName($propertyName, $className = null)
     {
-        return $this->getOriginal()->propertyToColumnName($propertyName, $className);
+        return $this->original->propertyToColumnName($propertyName, $className);
     }
 
     /**
@@ -58,7 +62,7 @@ class NamingStrategy implements NamingStrategyInterface
      */
     public function embeddedFieldToColumnName($propertyName, $embeddedColumnName, $className = null, $embeddedClassName = null)
     {
-        return $this->getOriginal()->embeddedFieldToColumnName($propertyName, $embeddedColumnName, $className, $embeddedClassName);
+        return $this->original->embeddedFieldToColumnName($propertyName, $embeddedColumnName, $className, $embeddedClassName);
     }
 
     /**
@@ -68,7 +72,7 @@ class NamingStrategy implements NamingStrategyInterface
      */
     public function referenceColumnName()
     {
-        return $this->getOriginal()->referenceColumnName();
+        return $this->original->referenceColumnName();
     }
 
     /**
@@ -80,7 +84,7 @@ class NamingStrategy implements NamingStrategyInterface
      */
     public function joinColumnName($propertyName)
     {
-        return $this->getOriginal()->joinColumnName($propertyName);
+        return $this->original->joinColumnName($propertyName);
     }
 
     /**
@@ -111,14 +115,6 @@ class NamingStrategy implements NamingStrategyInterface
      */
     public function joinKeyColumnName($entityName, $referencedColumnName = null)
     {
-        return $this->getOriginal()->joinKeyColumnName($entityName, $referencedColumnName);
-    }
-
-    private function getOriginal(): UnderscoreNamingStrategy
-    {
-        if ($this->original === null) {
-            $this->original = StaticDI::get('doctrine.orm.naming_strategy.underscore');
-        }
-        return $this->original;
+        return $this->original->joinKeyColumnName($entityName, $referencedColumnName);
     }
 }

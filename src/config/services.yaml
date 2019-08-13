@@ -30,3 +30,7 @@ services:
 
   logger:
     alias: 'monolog.logger'
+
+  RvltDigital\SymfonyRevoltaBundle\Doctrine\NamingStrategy:
+    arguments:
+      - '%doctrine.orm.naming_strategy.underscore%'
