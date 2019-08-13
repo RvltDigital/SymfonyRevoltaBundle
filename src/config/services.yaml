@@ -33,4 +33,4 @@ services:
 
   RvltDigital\SymfonyRevoltaBundle\Doctrine\NamingStrategy:
     arguments:
-      - '%doctrine.orm.naming_strategy.underscore%'
+      - '@doctrine.orm.naming_strategy.underscore'
