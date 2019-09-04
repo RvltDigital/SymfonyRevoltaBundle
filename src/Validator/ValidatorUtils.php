@@ -21,8 +21,9 @@ class ValidatorUtils
                 foreach ($item->getErrors() as $error) {
                     $exception = new ValidatorException(
                         sprintf(
-                            '[%s] %s: %s',
+                            '[%s, id: %s] %s: %s',
                             $error->getClass(),
+                            $item->getId(),
                             $error->getName(),
                             $error->getMessage()
                         ),
