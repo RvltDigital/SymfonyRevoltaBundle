@@ -34,19 +34,25 @@ trait EntityMetaData
     /**
      * Gets triggered only on insert
      * @ORM\PrePersist()
+     * @return $this
      */
     public function setCreatedUpdated()
     {
         $this->created = new \DateTime();
         $this->updated = new \DateTime();
+
+        return $this;
     }
 
     /**
      * Gets triggered every time on update
      * @ORM\PreUpdate()
+     * @return $this
      */
     public function setUpdated()
     {
         $this->updated = new \DateTime();
+
+        return $this;
     }
 }
