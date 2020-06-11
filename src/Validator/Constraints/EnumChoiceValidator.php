@@ -19,6 +19,11 @@ class EnumChoiceValidator extends ConstraintValidator
     {
         /** @var AbstractEnum $class */
         $class = $constraint->enum;
+        /** @var bool $nullable */
+        $nullable = $constraint->nullable;
+        if ($value === null && $nullable === true) {
+            return;
+        }
         if (!$class::hasValue($value)) {
             $this
                 ->context

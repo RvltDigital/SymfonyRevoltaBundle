@@ -15,6 +15,11 @@ class EnumChoice extends Constraint
     public $enum;
 
     /**
+     * @var bool
+     */
+    public $nullable = false;
+
+    /**
      * @var string
      */
     public $message = 'The value "{{ value }}" is not a valid choice.';
