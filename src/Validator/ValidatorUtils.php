@@ -77,10 +77,16 @@ class ValidatorUtils
                     continue;
                 }
 
-                $value = $reflection->getValue($item);
+                try {
+                    $value = $reflection->getValue($item);
+                } catch (ReflectionException $e) {
+                    continue;
+                }
+
                 if (!is_object($value) || $result->contains($value)) {
                     continue;
                 }
+
                 if (
                     $config['type'] & ClassMetadataInfo::MANY_TO_ONE
                     || $config['type'] & ClassMetadataInfo::ONE_TO_ONE
